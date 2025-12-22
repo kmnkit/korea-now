@@ -10,27 +10,27 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // 韓国モダンカラーパレット
+        // 韓国モダンカラーパレット - 淡い青と赤
         primary: {
-          DEFAULT: '#10B981', // Emerald green - 洗練された緑
-          light: '#6EE7B7',   // 明るいミント
-          dark: '#059669',    // 深い緑
+          DEFAULT: '#7BA4DB', // ソフトブルー - 明度高め
+          light: '#A8C5E8',   // より淡いブルー
+          dark: '#5B8BC9',    // 少し濃いブルー
         },
         secondary: {
-          DEFAULT: '#F97316', // Warm orange - いいね、CTA
-          light: '#FDBA74',   // 柔らかいオレンジ
-          dark: '#EA580C',    // 深いオレンジ
+          DEFAULT: '#E89BA3', // ソフトローズ - 淡いピンク/赤
+          light: '#F5B5B5',   // より淡いピンク
+          dark: '#D97B85',    // 少し濃いローズ
         },
         accent: {
-          DEFAULT: '#3B82F6', // Standard blue - リンク、情報
-          light: '#93C5FD',   // 明るい青
-          dark: '#1D4ED8',    // 深い青
+          DEFAULT: '#93B5E1', // アクセントブルー - 情報表示用
+          light: '#B5D0ED',   // より淡いアクセント
+          dark: '#6B9BD1',    // 少し濃いアクセント
         },
-        // 警告・エラー用に残す
+        // 警告・エラー用
         danger: {
-          DEFAULT: '#EF4444', // 警告色
-          light: '#FCA5A5',
-          dark: '#DC2626',
+          DEFAULT: '#E57373', // 淡めの赤（明度高め）
+          light: '#EF9A9A',
+          dark: '#D32F2F',
         },
       },
       fontFamily: {

@@ -33,7 +33,7 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-white flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         {/* ロゴ */}
         <div className="text-center mb-8">
@@ -104,7 +104,7 @@ export default function SignupPage() {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="김지수"
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-celadon focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   required
                 />
               </div>
@@ -118,7 +118,7 @@ export default function SignupPage() {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="example@korea-now.com"
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-celadon focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   required
                 />
               </div>
@@ -132,7 +132,7 @@ export default function SignupPage() {
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                   placeholder="8文字以上"
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-celadon focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   minLength={8}
                   required
                 />
@@ -147,7 +147,7 @@ export default function SignupPage() {
                   value={formData.confirmPassword}
                   onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
                   placeholder="もう一度入力"
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-celadon focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   minLength={8}
                   required
                 />
@@ -159,15 +159,15 @@ export default function SignupPage() {
                   id="agree"
                   checked={formData.agreeToTerms}
                   onChange={(e) => setFormData({ ...formData, agreeToTerms: e.target.checked })}
-                  className="mt-1 w-4 h-4 rounded border-gray-300 text-celadon focus:ring-celadon"
+                  className="mt-1 w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary"
                   required
                 />
                 <label htmlFor="agree" className="text-sm text-gray-600">
-                  <Link href="/terms" className="text-celadon hover:underline">
+                  <Link href="/terms" className="text-primary hover:underline">
                     利用規約
                   </Link>
                   および
-                  <Link href="/privacy" className="text-celadon hover:underline">
+                  <Link href="/privacy" className="text-primary hover:underline">
                     プライバシーポリシー
                   </Link>
                   に同意します

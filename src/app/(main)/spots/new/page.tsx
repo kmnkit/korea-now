@@ -32,7 +32,7 @@ export default function NewSpotPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-24">
+    <div className="min-h-screen bg-white pb-24">
       {/* ヘッダー */}
       <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 px-4 h-14 flex items-center justify-between">
         <button
@@ -212,7 +212,7 @@ export default function NewSpotPage() {
         </div>
 
         {/* 注意事項 */}
-        <div className="bg-gradient-to-r from-celadon/10 to-kpop-blue/10 rounded-korean p-4 border border-celadon/20">
+        <div className="bg-primary/10 rounded-korean p-4 border border-primary/20">
           <h3 className="text-sm font-semibold text-gray-900 mb-2">
             投稿時の注意事項
           </h3>

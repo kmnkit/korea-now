@@ -131,7 +131,7 @@ export default function SpotDetailPage({ params }: { params: { id: string } }) {
         {/* タグ */}
         <div className="flex flex-wrap gap-2">
           {mockSpot.tags.map((tag) => (
-            <span key={tag} className="px-3 py-1.5 rounded-full bg-gray-100 text-sm text-gray-700">
+            <span key={tag} className="px-3 py-1.5 rounded-full bg-primary/5 text-sm text-gray-700">
               #{tag}
             </span>
           ))}

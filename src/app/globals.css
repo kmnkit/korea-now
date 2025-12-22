@@ -4,22 +4,22 @@
 
 @layer base {
   :root {
-    /* 韓国モダンカラーパレット */
-    --primary: 16 185 129;        /* Emerald green */
-    --primary-light: 110 231 183;
-    --primary-dark: 5 150 105;
+    /* 韓国モダンカラーパレット - 淡い青と赤 */
+    --primary: 123 164 219;        /* ソフトブルー - 明度高め */
+    --primary-light: 168 197 232;
+    --primary-dark: 91 139 201;
 
-    --secondary: 249 115 22;      /* Warm orange */
-    --secondary-light: 253 186 116;
-    --secondary-dark: 234 88 12;
+    --secondary: 232 155 163;      /* ソフトローズ - 淡いピンク/赤 */
+    --secondary-light: 245 181 181;
+    --secondary-dark: 217 123 133;
 
-    --accent: 59 130 246;         /* Standard blue */
-    --accent-light: 147 197 253;
-    --accent-dark: 29 78 216;
+    --accent: 147 181 225;         /* アクセントブルー - 情報表示用 */
+    --accent-light: 181 208 237;
+    --accent-dark: 107 155 209;
 
-    --danger: 239 68 68;          /* Error/Warning */
-    --danger-light: 252 165 165;
-    --danger-dark: 220 38 38;
+    --danger: 229 115 115;         /* 淡めの赤（明度高め） */
+    --danger-light: 239 154 154;
+    --danger-dark: 211 47 47;
 
     /* セマンティックカラー */
     --background: 0 0% 100%;

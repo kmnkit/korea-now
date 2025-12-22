@@ -2,7 +2,7 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       {/* ヒーローセクション */}
-      <section className="relative h-screen flex items-center justify-center bg-gray-50">
+      <section className="relative h-screen flex items-center justify-center bg-white">
         <div className="absolute inset-0 bg-black/20" />
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
