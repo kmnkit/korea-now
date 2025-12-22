@@ -21,7 +21,7 @@ export default function ProfilePage() {
       followers: 1234,
       following: 567
     },
-    plan: 'PREMIUM' as const
+    plan: 'PREMIUM' as 'PREMIUM' | 'FREE'
   }
 
   const mockPosts = [
