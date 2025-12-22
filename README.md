@@ -21,15 +21,38 @@
 
 ## 🛠 技術スタック
 
-- **フロントエンド**: React, Next.js, Tailwind CSS
-- **バックエンド**: Next.js API Routes, PostgreSQL
-- **認証**: NextAuth.js / Supabase Auth
-- **インフラ**: Vercel, Supabase
-- **AI**: OpenAI Moderation API, Google Cloud Vision API
+### Vercel統合スタック
+- **フレームワーク**: Next.js 14+ (App Router)
+- **スタイリング**: Tailwind CSS + shadcn/ui
+- **データベース**: Vercel Postgres
+- **ストレージ**: Vercel Blob
+- **キャッシュ**: Vercel KV (Redis)
+- **認証**: NextAuth.js v5
+- **AI**: OpenAI API (Vercel AI SDK)
+- **決済**: Stripe
+- **ホスティング**: Vercel
+
+> Vercel単体でフルスタック開発可能な構成
+
+## 💰 マネタイズ戦略
+
+### 多様な収益源
+- **フリーミアムモデル**: 無料/プレミアム/プロプラン
+- **B2B**: スポンサーシップ、データ分析レポート
+- **アフィリエイト**: 旅行予約サイト連携
+- **API提供**: スポット情報データ販売
+
+### 段階的な収益化
+- **初期6ヶ月**: 無料提供でコミュニティ構築
+- **6ヶ月以降**: プレミアムプラン導入
+- **1年目標**: 月間¥500,000の収益
+
+詳細な戦略は [PRD](./PRD.md#-マネタイズ戦略) を参照してください。
 
 ## 📚 ドキュメント
 
 - [PRD (Product Requirements Document)](./PRD.md) - 詳細な製品要件定義書
+- [技術スタック詳細](./TECH_STACK.md) - アーキテクチャと実装詳細
 
 ## 🚀 開発ロードマップ
 
@@ -37,6 +60,8 @@
 - [ ] Phase 2: ベータローンチ
 - [ ] Phase 3: 正式リリース
 - [ ] Phase 4: 機能拡張
+- [ ] Phase 5: マネタイズ開始
+- [ ] Phase 6: スケール・最適化
 
 詳細は [PRD](./PRD.md) を参照してください。
 
