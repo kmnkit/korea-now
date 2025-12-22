@@ -29,10 +29,6 @@
     --foreground: 0 0% 95%;
   }
 
-  * {
-    @apply border-border;
-  }
-
   body {
     @apply bg-background text-foreground;
   }
