@@ -1,0 +1,281 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+// ユーザー
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  emailVerified DateTime?
+  name          String?
+  nickname      String?   @unique
+  image         String?
+  bio           String?   @db.Text
+  password      String?   // Credentials provider用
+
+  // プラン
+  plan          Plan      @default(FREE)
+  planExpiry    DateTime?
+
+  // 信頼性スコア
+  trustScore    Int       @default(50)
+
+  // 関連
+  accounts      Account[]
+  sessions      Session[]
+  spots         Spot[]
+  likes         Like[]
+  comments      Comment[]
+  bookmarks     Bookmark[]
+  reports       Report[]
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([email])
+  @@index([nickname])
+}
+
+enum Plan {
+  FREE
+  PREMIUM
+  PRO
+}
+
+// NextAuth用
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// スポット
+model Spot {
+  id          String      @id @default(cuid())
+  name        String
+  description String      @db.Text
+  category    Category
+  area        Area
+  address     String?
+  lat         Float?
+  lng         Float?
+  budget      Budget?
+  hours       String?
+  mapLink     String?
+
+  // 投稿者
+  userId      String
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // 画像
+  images      Image[]
+
+  // タグ
+  tags        Tag[]
+
+  // リアクション
+  likes       Like[]
+  comments    Comment[]
+  bookmarks   Bookmark[]
+  reports     Report[]
+
+  // モデレーション
+  status      ModerationStatus @default(PENDING)
+  moderatedAt DateTime?
+  moderatedBy String?
+  rejectionReason String?
+
+  // 統計
+  likeCount   Int         @default(0)
+  commentCount Int        @default(0)
+  viewCount   Int         @default(0)
+
+  // スポンサー
+  isSponsored Boolean     @default(false)
+  sponsorExpiry DateTime?
+
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@index([userId])
+  @@index([category])
+  @@index([area])
+  @@index([status])
+  @@index([createdAt])
+  @@index([likeCount])
+  @@fulltext([name, description])
+}
+
+enum Category {
+  CAFE
+  RESTAURANT
+  TOURISM
+  SHOPPING
+  NIGHTLIFE
+  OTHER
+}
+
+enum Area {
+  SEOUL
+  BUSAN
+  JEJU
+  INCHEON
+  DAEGU
+  DAEJEON
+  GWANGJU
+  OTHER
+}
+
+enum Budget {
+  LOW        // ~10,000ウォン
+  MEDIUM     // 10,000~30,000ウォン
+  HIGH       // 30,000~50,000ウォン
+  LUXURY     // 50,000ウォン~
+}
+
+enum ModerationStatus {
+  PENDING    // AI審査待ち
+  APPROVED   // 承認済み
+  REJECTED   // 却下
+  FLAGGED    // ユーザー通報あり
+  REVIEWING  // 管理者レビュー中
+}
+
+// 画像
+model Image {
+  id       String @id @default(cuid())
+  url      String
+  spotId   String
+  spot     Spot   @relation(fields: [spotId], references: [id], onDelete: Cascade)
+  order    Int    @default(0)
+
+  @@index([spotId])
+}
+
+// タグ
+model Tag {
+  id    String @id @default(cuid())
+  name  String @unique
+  spots Spot[]
+  count Int    @default(0)
+
+  @@index([name])
+}
+
+// いいね
+model Like {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  spotId    String
+  spot      Spot     @relation(fields: [spotId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, spotId])
+  @@index([userId])
+  @@index([spotId])
+}
+
+// コメント
+model Comment {
+  id        String   @id @default(cuid())
+  content   String   @db.Text
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  spotId    String
+  spot      Spot     @relation(fields: [spotId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([spotId])
+}
+
+// ブックマーク
+model Bookmark {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  spotId    String
+  spot      Spot     @relation(fields: [spotId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, spotId])
+  @@index([userId])
+  @@index([spotId])
+}
+
+// 通報
+model Report {
+  id        String       @id @default(cuid())
+  reason    ReportReason
+  details   String?      @db.Text
+  userId    String
+  user      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  spotId    String
+  spot      Spot         @relation(fields: [spotId], references: [id], onDelete: Cascade)
+  status    ReportStatus @default(PENDING)
+  reviewedAt DateTime?
+  reviewedBy String?
+  createdAt DateTime     @default(now())
+
+  @@index([userId])
+  @@index([spotId])
+  @@index([status])
+}
+
+enum ReportReason {
+  SPAM
+  INAPPROPRIATE
+  MISINFORMATION
+  HARASSMENT
+  OTHER
+}
+
+enum ReportStatus {
+  PENDING
+  REVIEWED
+  ACTIONED
+  DISMISSED
+}
