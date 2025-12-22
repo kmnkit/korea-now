@@ -838,4 +838,110 @@ ea8e57f - docs: add Vercel deployment guide and configuration
 
 ---
 
-**最終更新**: 2025-12-22 23:15 JST
+## 2025-12-22 深夜（Vercelビルドエラー修正）
+
+### 🐛 発生した問題
+
+#### Vercelデプロイビルドエラー
+**エラー**: `bg-background` class does not exist
+
+**詳細**:
+```
+Syntax error: /vercel/path0/src/app/globals.css The `bg-background` class does not exist.
+If `bg-background` is a custom class, make sure it is defined within a `@layer` directive.
+```
+
+**原因**:
+- `src/app/globals.css`で `@apply bg-background text-foreground` を使用
+- これらのクラスがTailwind設定で定義されていなかった
+- ビルド時にTailwindがクラスを見つけられず失敗
+
+### ✅ 解決策
+
+#### CSS修正
+```css
+// Before (エラー)
+body {
+  @apply bg-background text-foreground;
+}
+
+// After (修正)
+body {
+  background-color: white;
+  color: hsl(0 0% 10%);
+}
+```
+
+#### ドキュメント整備
+- [x] **GitHubイシューテンプレート作成**（.github/ISSUE_TEMPLATE/bug_report.md）
+  - バグレポート標準フォーマット
+  - 再現手順、環境情報、エラーログのセクション
+
+- [x] **問題追跡ドキュメント作成**（docs/ISSUES.md）
+  - Issue #1として今回のエラーを詳細に記録
+  - 原因、解決策、学びを文書化
+  - 再発防止策の提案
+
+### 📝 Git作業
+
+#### コミット履歴
+```
+f979276 - fix(css): replace @apply with direct CSS for body styles to fix Vercel build
+  - 3 files changed, 167 insertions(+), 1 deletion(-)
+  - globals.css修正
+  - GitHubイシューテンプレート追加
+  - ISSUES.md作成
+```
+
+### 💡 学び・メモ
+
+#### Tailwind @applyディレクティブ
+1. **@applyの制限**
+   - `@apply`で使用するクラスは、Tailwindに定義されている必要がある
+   - カスタムクラス名を使う場合は、`tailwind.config.ts`で定義が必須
+
+2. **CSS変数とTailwindクラスの違い**
+   - `--background`（CSS変数）と`bg-background`（Tailwindクラス）は別物
+   - CSS変数を使う場合は、直接CSSで指定する方が安全
+
+3. **ビルド環境の違い**
+   - ローカルとVercel環境でビルド結果が異なる場合がある
+   - デプロイ前に必ず`npm run build`でテストする
+
+#### 再発防止策
+- [ ] デプロイ前にローカルで`npm run build`を必須化
+- [ ] GitHub Actionsでビルドテストを自動化
+- [ ] Tailwindカスタムクラスは`tailwind.config.ts`で適切に定義
+
+### 🎯 次のステップ
+
+#### 優先度: 最高
+- [ ] **Vercel再デプロイ**（ビルドエラー修正後）
+- [ ] **デプロイ成功確認**
+- [ ] **デザインレビュー**（デプロイ後）
+
+#### 優先度: 高
+- [ ] GitHub Actionsでビルドテスト自動化
+- [ ] PWAアイコン作成（72px〜512px）
+- [ ] デザインフィードバック収集
+
+### 📈 プロジェクト状況
+
+**進捗**:
+- 設計・計画: 100% ✅
+- Phase 1 セットアップ: 100% ✅
+- Phase 3 UI/UXモック: 100% ✅
+- Vercelデプロイ準備: 100% ✅
+- **ビルドエラー修正: 100% ✅（新規完了）**
+- MVP開発: 25%
+- テスト: 0%
+- デプロイ: 75%（ビルドエラー修正完了、再デプロイ待ち）
+
+**次回セッション目標**:
+1. Vercel再デプロイ + 成功確認
+2. デザインレビュー
+3. フィードバック反映
+
+---
+
+**最終更新**: 2025-12-22 23:45 JST
