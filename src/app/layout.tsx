@@ -22,6 +22,23 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Korea Now - 韓国トレンドスポット共有アプリ',
   description: '日本在住の韓国人や韓国好きのための、最新韓国トレンドスポット共有アプリ',
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'Korea Now',
+  },
+  icons: {
+    icon: '/icon-192x192.png',
+    apple: '/icon-192x192.png',
+  },
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  },
+  themeColor: '#94C9A9',
 }
 
 export default function RootLayout({
