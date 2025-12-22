@@ -733,4 +733,109 @@ src/
 
 ---
 
-**最終更新**: 2025-12-22 22:44 JST
+## 2025-12-22 深夜（Vercelデプロイ準備）
+
+### 📋 完了したタスク
+
+#### Vercelデプロイ準備
+- [x] **ビルドエラー修正**
+  - globals.cssから `@apply border-border` を削除
+  - CSS構文エラーを解決
+
+- [x] **Google Fonts設定復元**
+  - Noto Sans JP + Inter を有効化
+  - Vercel環境でビルド可能な状態に
+
+- [x] **デプロイドキュメント作成**（DEPLOY.md）
+  - Vercel Dashboard経由のデプロイ手順
+  - Vercel CLI経由のデプロイ手順
+  - トラブルシューティングガイド
+  - カスタムドメイン設定方法
+
+- [x] **Vercel設定ファイル作成**（vercel.json）
+  - ICN1リージョン設定（ソウル）
+  - Next.jsフレームワーク指定
+  - ビルド・開発コマンド設定
+
+### 📝 Git作業
+
+#### コミット履歴
+```
+7010b87 - fix: remove border-border from globals.css and prepare for Vercel deploy
+ea8e57f - docs: add Vercel deployment guide and configuration
+```
+
+### 🚀 デプロイ手順
+
+ユーザーによる手動デプロイが必要：
+
+1. **Vercel Dashboard** (https://vercel.com/dashboard) にアクセス
+2. **新規プロジェクトをインポート**
+   - リポジトリ: `kmnkit/korea-now`
+   - ブランチ: `claude/korea-travel-app-Btzzd`
+3. **設定確認**
+   - Framework: Next.js
+   - Build Command: `npm run build`
+   - Output Directory: `.next`
+4. **デプロイ実行**
+5. **デプロイ完了後のURL**でデザイン確認
+
+### 📱 デプロイ後の確認項目
+
+- [ ] ホーム画面の表示
+- [ ] スポット詳細画面の表示
+- [ ] 投稿フォームの表示
+- [ ] 検索・フィルター画面の表示
+- [ ] プロフィール画面の表示
+- [ ] ログイン/サインアップ画面の表示
+- [ ] モバイル表示（iPhone 14 Pro: 393×852）
+- [ ] 韓国デザインカラーパレットの確認
+- [ ] ナビゲーション動作確認
+
+### 💡 学び・メモ
+
+#### ローカルビルド制限
+- Google Fontsへのネットワークアクセス不可
+- Vercel環境では正常にビルド可能
+
+#### Vercelリージョン設定
+- ICN1（Seoul, South Korea）を指定
+- 韓国・日本のユーザーに最適なパフォーマンス
+
+### 🎯 次のステップ
+
+#### 優先度: 最高
+- [ ] **Vercelへデプロイ**（ユーザー操作）
+- [ ] **デザインレビュー**（デプロイ後）
+- [ ] **フィードバック収集**
+
+#### 優先度: 高（デザイン確認後）
+- [ ] デザイン調整（フィードバック次第）
+- [ ] PWAアイコン作成（72px〜512px）
+- [ ] Vercel Postgres接続
+- [ ] Prisma migrate実行
+
+#### 優先度: 中
+- [ ] NextAuth.js v5セットアップ
+- [ ] Vercel Blob画像アップロード
+- [ ] TDD開始（Vitest設定）
+
+### 📈 プロジェクト状況
+
+**進捗**:
+- 設計・計画: 100% ✅
+- Phase 1 セットアップ: 100% ✅
+- Phase 3 UI/UXモック: 100% ✅
+- **Vercelデプロイ準備: 100% ✅（新規完了）**
+- MVP開発: 25%
+- テスト: 0%
+- デプロイ: 50%（準備完了、実行待ち）
+
+**次回セッション目標**:
+1. Vercelデプロイ実行 + デザイン確認
+2. フィードバック反映
+3. データベース接続開始
+
+---
+
+**最終更新**: 2025-12-22 23:15 JST
