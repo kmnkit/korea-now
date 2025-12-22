@@ -47,29 +47,31 @@ export default function SearchPage() {
   const mockSpots = [
     {
       id: '1',
-      images: ['https://picsum.photos/seed/search1/400/300'],
       name: '성수 감성 카페',
+      description: '成水洞の感性あふれるカフェ。インスタ映え間違いなし！',
       category: 'カフェ',
       area: 'ソウル',
-      likes: 1234,
-      comments: 56,
+      images: [{ url: 'https://picsum.photos/seed/search1/400/300' }],
+      likeCount: 1234,
+      commentCount: 56,
       user: {
         name: '김지수',
-        avatar: 'https://i.pravatar.cc/150?img=1'
+        image: 'https://i.pravatar.cc/150?img=1'
       },
       createdAt: new Date('2024-01-15')
     },
     {
       id: '2',
-      images: ['https://picsum.photos/seed/search2/400/300'],
       name: '광안리 바다뷰 카페',
+      description: '広安里のオーシャンビューカフェ。海を眺めながらゆったり。',
       category: 'カフェ',
       area: '釜山',
-      likes: 892,
-      comments: 34,
+      images: [{ url: 'https://picsum.photos/seed/search2/400/300' }],
+      likeCount: 892,
+      commentCount: 34,
       user: {
         name: '박민준',
-        avatar: 'https://i.pravatar.cc/150?img=2'
+        image: 'https://i.pravatar.cc/150?img=2'
       },
       createdAt: new Date('2024-01-14')
     }

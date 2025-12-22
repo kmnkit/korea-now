@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { ArrowLeft, Upload, X, MapPin, Clock, DollarSign } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -56,10 +57,11 @@ export default function NewSpotPage() {
           <div className="grid grid-cols-3 gap-3">
             {images.map((img, index) => (
               <div key={index} className="relative aspect-square">
-                <img
+                <Image
                   src={img}
                   alt={`Upload ${index + 1}`}
-                  className="w-full h-full object-cover rounded-lg"
+                  fill
+                  className="object-cover rounded-lg"
                 />
                 <button
                   onClick={() => removeImage(index)}

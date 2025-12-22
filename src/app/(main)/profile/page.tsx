@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { Settings, MapPin, Calendar, Grid3x3, Bookmark } from 'lucide-react'
 import { useState } from 'react'
 import { SpotCard } from '@/components/spots/SpotCard'
@@ -26,57 +27,61 @@ export default function ProfilePage() {
   const mockPosts = [
     {
       id: '1',
-      images: ['https://picsum.photos/seed/profile1/400/300'],
       name: '성수 감성 카페',
+      description: '成水洞の感性あふれるカフェ。インスタ映え間違いなし！',
       category: 'カフェ',
       area: 'ソウル',
-      likes: 234,
-      comments: 12,
+      images: [{ url: 'https://picsum.photos/seed/profile1/400/300' }],
+      likeCount: 234,
+      commentCount: 12,
       user: {
         name: user.name,
-        avatar: user.avatar
+        image: user.avatar
       },
       createdAt: new Date('2024-01-15')
     },
     {
       id: '2',
-      images: ['https://picsum.photos/seed/profile2/400/300'],
       name: '한강 야경 명소',
+      description: '漢江の夜景スポット。夕暮れ時が特におすすめ。',
       category: '観光地',
       area: 'ソウル',
-      likes: 567,
-      comments: 34,
+      images: [{ url: 'https://picsum.photos/seed/profile2/400/300' }],
+      likeCount: 567,
+      commentCount: 34,
       user: {
         name: user.name,
-        avatar: user.avatar
+        image: user.avatar
       },
       createdAt: new Date('2024-01-14')
     },
     {
       id: '3',
-      images: ['https://picsum.photos/seed/profile3/400/300'],
       name: '명동 맛집',
+      description: '明洞の人気グルメスポット。本場の韓国料理を堪能。',
       category: 'レストラン',
       area: 'ソウル',
-      likes: 432,
-      comments: 28,
+      images: [{ url: 'https://picsum.photos/seed/profile3/400/300' }],
+      likeCount: 432,
+      commentCount: 28,
       user: {
         name: user.name,
-        avatar: user.avatar
+        image: user.avatar
       },
       createdAt: new Date('2024-01-13')
     },
     {
       id: '4',
-      images: ['https://picsum.photos/seed/profile4/400/300'],
       name: '북촌 한옥마을',
+      description: '北村韓屋村。伝統的な韓屋が並ぶ美しい街並み。',
       category: '観光地',
       area: 'ソウル',
-      likes: 891,
-      comments: 45,
+      images: [{ url: 'https://picsum.photos/seed/profile4/400/300' }],
+      likeCount: 891,
+      commentCount: 45,
       user: {
         name: user.name,
-        avatar: user.avatar
+        image: user.avatar
       },
       createdAt: new Date('2024-01-12')
     }
@@ -100,11 +105,13 @@ export default function ProfilePage() {
         <div className="px-4 pb-6">
           {/* アバター */}
           <div className="flex items-start gap-4 mb-4">
-            <div className="relative">
-              <img
+            <div className="relative w-20 h-20">
+              <Image
                 src={user.avatar}
                 alt={user.name}
-                className="w-20 h-20 rounded-full object-cover border-4 border-white shadow-korean"
+                width={80}
+                height={80}
+                className="rounded-full object-cover border-4 border-white shadow-korean"
               />
               {user.plan === 'PREMIUM' && (
                 <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-gradient-to-r from-celadon to-kpop-pink rounded-full flex items-center justify-center border-2 border-white">
