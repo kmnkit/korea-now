@@ -53,6 +53,9 @@
 
 - [PRD (Product Requirements Document)](./PRD.md) - 詳細な製品要件定義書
 - [技術スタック詳細](./TECH_STACK.md) - アーキテクチャと実装詳細
+- [実装計画書](./IMPLEMENTATION_PLAN.md) - 韓国デザイン重視の詳細実装ガイド
+- [CLAUDE.md](./CLAUDE.md) - AI Assistant向け開発ガイド（TDD、進捗管理）
+- [開発進捗ノート](./docs/PROGRESS.md) - 日々の開発進捗記録
 
 ## 🚀 開発ロードマップ
 
