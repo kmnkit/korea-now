@@ -30,7 +30,8 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    background-color: white;
+    color: hsl(0 0% 10%);
   }
 }
 
