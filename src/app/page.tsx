@@ -2,14 +2,14 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       {/* ヒーローセクション */}
-      <section className="relative h-screen flex items-center justify-center bg-gradient-to-br from-celadon via-kpop-blue to-kpop-pink">
+      <section className="relative h-screen flex items-center justify-center bg-gray-50">
         <div className="absolute inset-0 bg-black/20" />
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           {/* ロゴ */}
           <div className="mb-8 inline-flex items-center justify-center">
             <div className="w-20 h-20 rounded-korean-lg bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-korean-lg">
-              <span className="text-4xl font-bold bg-gradient-to-br from-celadon to-kpop-pink bg-clip-text text-transparent">
+              <span className="text-4xl font-bold text-gray-900">
                 K
               </span>
             </div>
@@ -31,7 +31,7 @@ export default function Home() {
 
           {/* CTAボタン */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-4 rounded-korean-lg bg-white text-celadon-dark font-bold text-lg hover:shadow-korean-lg transition-all hover:scale-105">
+            <button className="px-8 py-4 rounded-korean-lg bg-white text-primary font-bold text-lg hover:shadow-korean-lg transition-all hover:scale-105">
               無料で始める
             </button>
             <button className="px-8 py-4 rounded-korean-lg bg-white/10 backdrop-blur-sm text-white font-bold text-lg hover:bg-white/20 transition-all border-2 border-white/30">
@@ -51,7 +51,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* 機能カード1 */}
             <div className="korean-card p-8 hover:shadow-korean-lg">
-              <div className="w-16 h-16 rounded-korean bg-celadon/10 flex items-center justify-center mb-6">
+              <div className="w-16 h-16 rounded-korean bg-primary/10 flex items-center justify-center mb-6">
                 <span className="text-3xl">📍</span>
               </div>
               <h3 className="text-2xl font-bold mb-4 text-gray-900">
@@ -64,7 +64,7 @@ export default function Home() {
 
             {/* 機能カード2 */}
             <div className="korean-card p-8 hover:shadow-korean-lg">
-              <div className="w-16 h-16 rounded-korean bg-kpop-pink/10 flex items-center justify-center mb-6">
+              <div className="w-16 h-16 rounded-korean bg-secondary/10 flex items-center justify-center mb-6">
                 <span className="text-3xl">🔍</span>
               </div>
               <h3 className="text-2xl font-bold mb-4 text-gray-900">
@@ -77,7 +77,7 @@ export default function Home() {
 
             {/* 機能カード3 */}
             <div className="korean-card p-8 hover:shadow-korean-lg">
-              <div className="w-16 h-16 rounded-korean bg-kpop-blue/10 flex items-center justify-center mb-6">
+              <div className="w-16 h-16 rounded-korean bg-accent/10 flex items-center justify-center mb-6">
                 <span className="text-3xl">🛡️</span>
               </div>
               <h3 className="text-2xl font-bold mb-4 text-gray-900">
@@ -96,7 +96,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto text-center">
           <div className="mb-6">
             <div className="inline-flex items-center gap-2">
-              <div className="w-10 h-10 rounded-korean bg-gradient-to-br from-celadon to-kpop-blue flex items-center justify-center">
+              <div className="w-10 h-10 rounded-korean bg-primary flex items-center justify-center">
                 <span className="text-white font-bold text-xl">K</span>
               </div>
               <span className="text-xl font-bold">Korea Now</span>

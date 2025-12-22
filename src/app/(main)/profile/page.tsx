@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { Settings, MapPin, Calendar, Grid3x3, Bookmark } from 'lucide-react'
 import { useState } from 'react'
 import { SpotCard } from '@/components/spots/SpotCard'
@@ -20,63 +21,67 @@ export default function ProfilePage() {
       followers: 1234,
       following: 567
     },
-    plan: 'PREMIUM' as const
+    plan: 'PREMIUM' as 'PREMIUM' | 'FREE'
   }
 
   const mockPosts = [
     {
       id: '1',
-      images: ['https://picsum.photos/seed/profile1/400/300'],
       name: '성수 감성 카페',
+      description: '成水洞の感性あふれるカフェ。インスタ映え間違いなし！',
       category: 'カフェ',
       area: 'ソウル',
-      likes: 234,
-      comments: 12,
+      images: [{ url: 'https://picsum.photos/seed/profile1/400/300' }],
+      likeCount: 234,
+      commentCount: 12,
       user: {
         name: user.name,
-        avatar: user.avatar
+        image: user.avatar
       },
       createdAt: new Date('2024-01-15')
     },
     {
       id: '2',
-      images: ['https://picsum.photos/seed/profile2/400/300'],
       name: '한강 야경 명소',
+      description: '漢江の夜景スポット。夕暮れ時が特におすすめ。',
       category: '観光地',
       area: 'ソウル',
-      likes: 567,
-      comments: 34,
+      images: [{ url: 'https://picsum.photos/seed/profile2/400/300' }],
+      likeCount: 567,
+      commentCount: 34,
       user: {
         name: user.name,
-        avatar: user.avatar
+        image: user.avatar
       },
       createdAt: new Date('2024-01-14')
     },
     {
       id: '3',
-      images: ['https://picsum.photos/seed/profile3/400/300'],
       name: '명동 맛집',
+      description: '明洞の人気グルメスポット。本場の韓国料理を堪能。',
       category: 'レストラン',
       area: 'ソウル',
-      likes: 432,
-      comments: 28,
+      images: [{ url: 'https://picsum.photos/seed/profile3/400/300' }],
+      likeCount: 432,
+      commentCount: 28,
       user: {
         name: user.name,
-        avatar: user.avatar
+        image: user.avatar
       },
       createdAt: new Date('2024-01-13')
     },
     {
       id: '4',
-      images: ['https://picsum.photos/seed/profile4/400/300'],
       name: '북촌 한옥마을',
+      description: '北村韓屋村。伝統的な韓屋が並ぶ美しい街並み。',
       category: '観光地',
       area: 'ソウル',
-      likes: 891,
-      comments: 45,
+      images: [{ url: 'https://picsum.photos/seed/profile4/400/300' }],
+      likeCount: 891,
+      commentCount: 45,
       user: {
         name: user.name,
-        avatar: user.avatar
+        image: user.avatar
       },
       createdAt: new Date('2024-01-12')
     }
@@ -87,7 +92,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-silk to-celadon/5 pb-20">
+    <div className="min-h-screen bg-gray-50 pb-20">
       {/* プロフィールヘッダー */}
       <div className="bg-white border-b border-gray-200">
         {/* 設定ボタン */}
@@ -100,14 +105,16 @@ export default function ProfilePage() {
         <div className="px-4 pb-6">
           {/* アバター */}
           <div className="flex items-start gap-4 mb-4">
-            <div className="relative">
-              <img
+            <div className="relative w-20 h-20">
+              <Image
                 src={user.avatar}
                 alt={user.name}
-                className="w-20 h-20 rounded-full object-cover border-4 border-white shadow-korean"
+                width={80}
+                height={80}
+                className="rounded-full object-cover border-4 border-white shadow-korean"
               />
               {user.plan === 'PREMIUM' && (
-                <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-gradient-to-r from-celadon to-kpop-pink rounded-full flex items-center justify-center border-2 border-white">
+                <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-secondary rounded-full flex items-center justify-center border-2 border-white">
                   <span className="text-white text-xs font-bold">P</span>
                 </div>
               )}
@@ -174,7 +181,7 @@ export default function ProfilePage() {
             <Grid3x3 className="w-4 h-4" />
             投稿
             {activeTab === 'posts' && (
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-celadon" />
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary" />
             )}
           </button>
 
@@ -189,7 +196,7 @@ export default function ProfilePage() {
             <Bookmark className="w-4 h-4" />
             ブックマーク
             {activeTab === 'bookmarks' && (
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-celadon" />
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary" />
             )}
           </button>
         </div>
@@ -206,8 +213,8 @@ export default function ProfilePage() {
             </div>
           ) : (
             <div className="text-center py-16">
-              <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-celadon/20 to-kpop-blue/20 flex items-center justify-center">
-                <Grid3x3 className="w-10 h-10 text-celadon" />
+              <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+                <Grid3x3 className="w-10 h-10 text-primary" />
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-2">
                 まだ投稿がありません
@@ -222,8 +229,8 @@ export default function ProfilePage() {
           )
         ) : (
           <div className="text-center py-16">
-            <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-celadon/20 to-kpop-pink/20 flex items-center justify-center">
-              <Bookmark className="w-10 h-10 text-kpop-pink" />
+            <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-accent/10 flex items-center justify-center">
+              <Bookmark className="w-10 h-10 text-accent" />
             </div>
             <h3 className="text-lg font-bold text-gray-900 mb-2">
               ブックマークがありません
@@ -238,14 +245,14 @@ export default function ProfilePage() {
       {/* プレミアムバナー（フリーユーザーの場合表示） */}
       {user.plan === 'FREE' && (
         <div className="mx-4 mb-4">
-          <div className="bg-gradient-to-r from-celadon via-kpop-blue to-kpop-purple rounded-korean p-4 text-white">
+          <div className="bg-primary rounded-korean p-4 text-white">
             <h3 className="text-lg font-bold mb-1">
               プレミアムにアップグレード
             </h3>
             <p className="text-sm opacity-90 mb-3">
               無制限の投稿、優先表示、詳細な分析など
             </p>
-            <button className="w-full bg-white text-gray-900 font-semibold py-2.5 rounded-lg hover:bg-gray-100 transition-colors">
+            <button className="w-full bg-white text-primary font-semibold py-2.5 rounded-lg hover:bg-gray-100 transition-colors">
               詳しく見る
             </button>
           </div>

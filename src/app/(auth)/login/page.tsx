@@ -19,19 +19,19 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-celadon via-kpop-blue to-kpop-purple flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         {/* ロゴ */}
         <div className="text-center mb-8">
-          <div className="inline-flex w-20 h-20 rounded-2xl bg-white shadow-korean-lg items-center justify-center mb-4">
-            <span className="text-4xl font-bold bg-gradient-to-r from-celadon to-kpop-pink bg-clip-text text-transparent">
+          <div className="inline-flex w-20 h-20 rounded-2xl bg-primary shadow-lg items-center justify-center mb-4">
+            <span className="text-4xl font-bold text-white">
               K
             </span>
           </div>
-          <h1 className="text-3xl font-bold text-white mb-2">
-            Korea Now
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            Korea<span className="text-primary">Now</span>
           </h1>
-          <p className="text-white/90 text-sm">
+          <p className="text-gray-600 text-sm">
             「今の韓国」が、ここにある
           </p>
         </div>
@@ -45,7 +45,7 @@ export default function LoginPage() {
           {/* Google ログイン */}
           <button
             onClick={handleGoogleLogin}
-            className="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-lg border-2 border-gray-200 hover:border-celadon hover:bg-celadon/5 transition-all font-medium text-gray-700 mb-4"
+            className="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-lg border-2 border-gray-200 hover:border-primary hover:bg-primary/5 transition-all font-medium text-gray-700 mb-4"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24">
               <path

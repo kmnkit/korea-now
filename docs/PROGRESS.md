@@ -944,4 +944,129 @@ f979276 - fix(css): replace @apply with direct CSS for body styles to fix Vercel
 
 ---
 
-**最終更新**: 2025-12-22 23:45 JST
+## 2025-12-22 深夜（Vercelビルドエラー解決 - 継続セッション）
+
+### 🐛 発生した問題
+
+#### Issue #2: TypeScript Type Mismatch
+**エラー**: モックデータの型がSpotCardコンポーネントのPropsと不一致
+
+**原因**:
+- `profile/page.tsx`と`search/page.tsx`のモックデータが古い構造
+- `description`フィールドの欠落
+- `images`の型が`string[]`ではなく`[{ url: string }]`が必要
+- `likes`/`comments`ではなく`likeCount`/`commentCount`が正しい
+- `user.avatar`ではなく`user.image`が正しい
+
+#### Issue #3: TypeScript Literal Type Comparison
+**エラー**: `user.plan === 'FREE'` の比較が不可能
+
+**原因**:
+- `plan: 'PREMIUM' as const` により、型が`'PREMIUM'`リテラルに固定
+- `'PREMIUM'`型と`'FREE'`型は重複がないためTypeScriptがエラー
+
+### ✅ 解決策
+
+#### Issue #2の修正
+1. **型の統一**: SpotCardインターフェースに合わせてモックデータ更新
+2. **画像最適化**: `<img>`から`<Image>`コンポーネントへ置き換え
+3. **外部ドメイン設定**: `next.config.mjs`に画像ドメイン追加
+
+#### Issue #3の修正
+- `plan`プロパティをユニオン型に変更: `'PREMIUM' as 'PREMIUM' | 'FREE'`
+
+### 📝 Git作業
+
+#### コミット履歴
+```
+06a08e0 - fix(types): resolve TypeScript errors and ESLint warnings for Vercel build
+  - profile/page.tsx と search/page.tsx のモックデータ型修正
+  - <img> を <Image> コンポーネントに置き換え
+  - next.config.mjs に外部画像ドメイン追加
+
+8784a46 - fix(types): allow both PREMIUM and FREE plan types in profile user mock data
+  - plan型を 'as const' から union type に変更
+  - TypeScript literal type comparison エラー解決
+```
+
+#### ドキュメント更新
+```
+docs/ISSUES.md に Issue #2, #3 を追加
+- 詳細なエラーログ、原因分析、解決策を記録
+- 学びと再発防止策を文書化
+```
+
+### 💡 学び・メモ
+
+#### TypeScript型安全性
+1. **モックデータの型制約**
+   - モックデータも本番データと同じ型を守る必要がある
+   - コンポーネントのPropsインターフェースを常に参照
+
+2. **`as const` の注意点**
+   - 文字列リテラル型として固定される
+   - 条件分岐が必要な場合はユニオン型を使用
+
+3. **Next.js Image最適化**
+   - LCP改善とバンドワイズ削減のため`<Image>`を使用
+   - `remotePatterns`設定が必要
+
+#### デバッグプロセス
+- Vercelのビルドログを詳細に確認
+- エラーメッセージから欠落プロパティを特定
+- コンポーネントの型定義を参照して修正
+
+### 📋 完了したタスク
+
+- [x] **Issue #2解決**: TypeScript型不一致修正
+  - profile/page.tsx モックデータ更新
+  - search/page.tsx モックデータ更新
+  - Image最適化
+  - next.config.mjs 設定
+
+- [x] **Issue #3解決**: TypeScript literal type comparison
+  - plan型をユニオン型に変更
+
+- [x] **ドキュメント整備**
+  - docs/ISSUES.md に Issue #2, #3 追加
+  - 詳細な原因分析と解決策を記録
+
+### 🎯 次のステップ
+
+#### 優先度: 最高
+- [ ] **Vercel自動再デプロイ確認**（コミットpush後）
+- [ ] **ビルド成功確認**
+- [ ] **デプロイURL取得**
+
+#### 優先度: 高（デプロイ成功後）
+- [ ] **デザインレビュー**
+  - モバイル表示確認（iPhone 14 Pro: 393×852）
+  - 韓国デザインカラーパレット確認
+  - 全7画面の動作確認
+- [ ] **フィードバック収集**
+
+### 📈 プロジェクト状況
+
+**進捗**:
+- 設計・計画: 100% ✅
+- Phase 1 セットアップ: 100% ✅
+- Phase 3 UI/UXモック: 100% ✅
+- Vercelデプロイ準備: 100% ✅
+- **ビルドエラー修正: 100% ✅（Issue #1, #2, #3 全て解決）**
+- MVP開発: 30%
+- テスト: 0%
+- デプロイ: 90%（ビルド成功確認待ち）
+
+**問題追跡**:
+- Issue #1: CSS class not found ✅ 解決済み
+- Issue #2: TypeScript type mismatch ✅ 解決済み
+- Issue #3: Literal type comparison ✅ 解決済み
+
+**次回セッション目標**:
+1. Vercelビルド成功確認
+2. デプロイURLでデザインレビュー
+3. ユーザーフィードバック収集
+
+---
+
+**最終更新**: 2025-12-22 23:50 JST

@@ -10,23 +10,28 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // 韓国カラーパレット
-        celadon: {
-          DEFAULT: '#94C9A9',
-          light: '#B8E6D0',
-          dark: '#6BAA8A',
+        // 韓国モダンカラーパレット
+        primary: {
+          DEFAULT: '#10B981', // Emerald green - 洗練された緑
+          light: '#6EE7B7',   // 明るいミント
+          dark: '#059669',    // 深い緑
         },
-        dancheong: {
-          DEFAULT: '#C62E2E',
-          light: '#E85858',
-          dark: '#A31E1E',
+        secondary: {
+          DEFAULT: '#F97316', // Warm orange - いいね、CTA
+          light: '#FDBA74',   // 柔らかいオレンジ
+          dark: '#EA580C',    // 深いオレンジ
         },
-        kpop: {
-          pink: '#FF3E9A',
-          blue: '#00D9FF',
-          purple: '#9D4EDD',
+        accent: {
+          DEFAULT: '#3B82F6', // Standard blue - リンク、情報
+          light: '#93C5FD',   // 明るい青
+          dark: '#1D4ED8',    // 深い青
         },
-        silk: '#F8F8F8',
+        // 警告・エラー用に残す
+        danger: {
+          DEFAULT: '#EF4444', // 警告色
+          light: '#FCA5A5',
+          dark: '#DC2626',
+        },
       },
       fontFamily: {
         sans: ['var(--font-pretendard)', 'var(--font-noto-sans-jp)', 'sans-serif'],

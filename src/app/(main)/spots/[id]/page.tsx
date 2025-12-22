@@ -100,7 +100,7 @@ export default function SpotDetailPage({ params }: { params: { id: string } }) {
           <div className="flex items-start justify-between mb-3">
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2">
-                <span className="px-2.5 py-1 rounded-full bg-celadon/10 text-celadon-dark text-xs font-semibold">
+                <span className="px-2.5 py-1 rounded-full bg-primary/10 text-primary-dark text-xs font-semibold">
                   {mockSpot.category}
                 </span>
                 <span className="flex items-center gap-1 text-xs text-gray-500">
@@ -184,7 +184,7 @@ export default function SpotDetailPage({ params }: { params: { id: string } }) {
         {/* 投稿者情報 */}
         <div className="korean-card p-4">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-celadon to-kpop-pink flex items-center justify-center text-white font-bold">
+            <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white font-bold">
               {mockSpot.user.name[0]}
             </div>
             <div className="flex-1">
@@ -206,7 +206,7 @@ export default function SpotDetailPage({ params }: { params: { id: string } }) {
           <div className="space-y-4">
             {mockSpot.comments.map((comment) => (
               <div key={comment.id} className="flex gap-3">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-kpop-pink to-kpop-blue flex-shrink-0" />
+                <div className="w-8 h-8 rounded-full bg-secondary flex-shrink-0" />
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
                     <span className="font-semibold text-sm text-gray-900">{comment.user.name}</span>
@@ -225,7 +225,7 @@ export default function SpotDetailPage({ params }: { params: { id: string } }) {
             <input
               type="text"
               placeholder="コメントを書く..."
-              className="flex-1 px-4 py-3 rounded-korean border border-gray-200 focus:outline-none focus:ring-2 focus:ring-celadon focus:border-transparent"
+              className="flex-1 px-4 py-3 rounded-korean border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             />
             <button className="korean-btn-primary py-3 px-6">送信</button>
           </div>
