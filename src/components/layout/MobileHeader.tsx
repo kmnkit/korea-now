@@ -53,7 +53,7 @@ export function MobileHeader() {
             <input
               type="text"
               placeholder="スポット、エリアを検索..."
-              className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-celadon focus:border-transparent"
+              className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               autoFocus
             />
           </div>

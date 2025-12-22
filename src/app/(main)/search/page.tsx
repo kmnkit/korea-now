@@ -80,7 +80,7 @@ export default function SearchPage() {
   const activeFilterCount = selectedCategories.length + selectedAreas.length
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       {/* 検索ヘッダー */}
       <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
         <div className="px-4 py-3">
@@ -216,7 +216,7 @@ export default function SearchPage() {
         ) : (
           // 検索前の状態
           <div className="text-center py-16">
-            <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-celadon/20 to-kpop-blue/20 flex items-center justify-center">
+            <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
               <Search className="w-10 h-10 text-primary" />
             </div>
             <h3 className="text-lg font-bold text-gray-900 mb-2">

@@ -127,9 +127,9 @@ export default function HomePage() {
 
             {/* 3枚ごとに広告プレースホルダー */}
             {(index + 1) % 3 === 0 && (
-              <div className="mt-4 korean-card p-4 bg-gray-100">
+              <div className="mt-4 korean-card p-4 bg-white">
                 <div className="text-xs text-gray-500 text-center mb-2">スポンサー</div>
-                <div className="aspect-[320/100] bg-gray-100 rounded-korean flex items-center justify-center">
+                <div className="aspect-[320/100] bg-primary/5 rounded-korean flex items-center justify-center">
                   <span className="text-gray-400 text-sm">広告プレースホルダー</span>
                 </div>
               </div>
