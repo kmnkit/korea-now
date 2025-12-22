@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* 韓国カラーパレット */
+    --celadon: 148 201 169;
+    --celadon-light: 184 230 208;
+    --celadon-dark: 107 170 138;
+
+    --dancheong: 198 46 46;
+    --dancheong-light: 232 88 88;
+    --dancheong-dark: 163 30 30;
+
+    --kpop-pink: 255 62 154;
+    --kpop-blue: 0 217 255;
+    --kpop-purple: 157 78 221;
+
+    --silk: 248 248 248;
+
+    /* セマンティックカラー */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+  }
+
+  .dark {
+    --background: 0 0% 10%;
+    --foreground: 0 0% 95%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* 韓国スタイルカード */
+  .korean-card {
+    @apply rounded-korean bg-white shadow-korean overflow-hidden
+           transition-transform hover:scale-[1.02] cursor-pointer;
+  }
+
+  /* 韓国スタイルボタン */
+  .korean-btn {
+    @apply px-6 py-3 rounded-korean font-semibold
+           transition-all hover:shadow-korean-lg;
+  }
+
+  .korean-btn-primary {
+    @apply korean-btn bg-celadon text-white hover:bg-celadon-dark;
+  }
+
+  .korean-btn-secondary {
+    @apply korean-btn bg-kpop-pink text-white hover:opacity-90;
+  }
+
+  .korean-btn-outline {
+    @apply korean-btn border-2 border-celadon text-celadon hover:bg-celadon hover:text-white;
+  }
+}
