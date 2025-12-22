@@ -40,52 +40,67 @@ Hosting:    Vercel
 korea-now/
 ├── src/
 │   ├── app/                    # Next.js App Router
-│   │   ├── (auth)/             # 認証関連ページ（グループルート）
-│   │   │   ├── login/
-│   │   │   └── signup/
-│   │   ├── (main)/             # メインアプリページ
-│   │   │   ├── page.tsx        # ホーム（スポット一覧）
+│   │   ├── (auth)/             # 認証関連ページ（グループルート） ✅ 実装済み
+│   │   │   ├── layout.tsx      # 認証レイアウト
+│   │   │   ├── login/page.tsx  # ログインページ
+│   │   │   └── signup/page.tsx # サインアップページ
+│   │   ├── (main)/             # メインアプリページ ✅ 実装済み
+│   │   │   ├── layout.tsx      # メインレイアウト（ヘッダー+ナビ）
+│   │   │   ├── page.tsx        # ホーム（スポット一覧グリッド）
 │   │   │   ├── spots/
-│   │   │   │   ├── [id]/      # スポット詳細
-│   │   │   │   └── new/        # 新規投稿
-│   │   │   ├── search/
-│   │   │   ├── profile/
-│   │   │   └── settings/
-│   │   └── api/                # API Routes
+│   │   │   │   ├── [id]/page.tsx    # スポット詳細
+│   │   │   │   └── new/page.tsx     # 新規投稿フォーム
+│   │   │   ├── search/page.tsx      # 検索・フィルターページ
+│   │   │   └── profile/page.tsx     # プロフィールページ
+│   │   ├── layout.tsx          # ルートレイアウト（フォント、PWA設定）
+│   │   ├── page.tsx            # リダイレクト → (main)/page.tsx
+│   │   ├── globals.css         # グローバルスタイル（韓国デザイン）
+│   │   └── api/                # API Routes（未実装）
 │   │       ├── spots/
 │   │       ├── auth/[...nextauth]/
 │   │       ├── moderation/
 │   │       ├── webhooks/stripe/
 │   │       └── upload/
 │   ├── components/             # Reactコンポーネント
-│   │   ├── ui/                 # shadcn/ui基本コンポーネント
-│   │   ├── spots/              # スポット関連コンポーネント
-│   │   ├── maps/               # 地図コンポーネント
-│   │   ├── layout/             # レイアウトコンポーネント
-│   │   └── moderation/
+│   │   ├── layout/             # レイアウトコンポーネント ✅ 実装済み
+│   │   │   ├── MobileHeader.tsx     # スティッキーヘッダー
+│   │   │   └── MobileNav.tsx        # ボトムナビゲーション
+│   │   ├── spots/              # スポット関連コンポーネント ✅ 実装済み
+│   │   │   └── SpotCard.tsx         # スポットカード
+│   │   ├── ui/                 # shadcn/ui基本コンポーネント（未実装）
+│   │   ├── maps/               # 地図コンポーネント（未実装）
+│   │   └── moderation/         # モデレーションコンポーネント（未実装）
 │   ├── lib/                    # ユーティリティ・設定
-│   │   ├── auth.ts             # NextAuth設定
-│   │   ├── db.ts               # Prisma client
-│   │   ├── moderation.ts       # AI moderation
-│   │   ├── stripe.ts           # Stripe設定
-│   │   └── utils.ts
-│   ├── types/                  # TypeScript型定義
+│   │   ├── db.ts               # Prisma client ✅ 実装済み
+│   │   ├── utils.ts            # ユーティリティ関数 ✅ 実装済み
+│   │   ├── auth.ts             # NextAuth設定（未実装）
+│   │   ├── moderation.ts       # AI moderation（未実装）
+│   │   └── stripe.ts           # Stripe設定（未実装）
+│   ├── types/                  # TypeScript型定義（未実装）
 │   └── styles/                 # グローバルスタイル
 ├── prisma/
-│   ├── schema.prisma           # データベーススキーマ
-│   └── migrations/
+│   ├── schema.prisma           # データベーススキーマ ✅ 実装済み
+│   └── migrations/             # マイグレーション（未実行）
 ├── public/                     # 静的ファイル
-├── tests/                      # テストファイル
+│   └── manifest.json           # PWA設定 ✅ 実装済み
+├── tests/                      # テストファイル（未実装）
 │   ├── unit/
 │   ├── integration/
 │   └── e2e/
 ├── docs/                       # ドキュメント
-│   └── PROGRESS.md             # 進捗管理ノート
-├── PRD.md                      # 製品要件定義書
-├── TECH_STACK.md               # 技術スタック詳細
-├── IMPLEMENTATION_PLAN.md      # 実装計画書
-└── CLAUDE.md                   # このファイル
+│   ├── PROGRESS.md             # 進捗管理ノート ✅ 更新中
+│   └── AD_STRATEGY.md          # 広告戦略 ✅ 実装済み
+├── PRD.md                      # 製品要件定義書 ✅
+├── TECH_STACK.md               # 技術スタック詳細 ✅
+├── IMPLEMENTATION_PLAN.md      # 実装計画書 ✅
+└── CLAUDE.md                   # このファイル ✅
 ```
+
+**実装状況**:
+- ✅ **Phase 1 完了**: プロジェクトセットアップ、依存関係、Tailwind設定
+- ✅ **Phase 3 完了**: モバイルデザインモック（7画面 + 3コンポーネント）
+- ⏳ **Phase 2 進行中**: データベース接続、マイグレーション実行待ち
+- ⏳ **Phase 4-10**: 未着手
 
 ---
 
@@ -653,7 +668,71 @@ kebab-case:  ページ ([spot-id]/page.tsx)
 
 ---
 
-**最終更新**: 2025-12-22
-**バージョン**: 1.0
+## 📱 実装済みコンポーネント
+
+### 画面（Pages）
+
+1. **ホーム画面** (`src/app/(main)/page.tsx`)
+   - 2カラムスポットグリッド
+   - 横スクロールカテゴリフィルター
+   - モックデータ6件
+   - 広告プレースホルダー
+
+2. **スポット詳細** (`src/app/(main)/spots/[id]/page.tsx`)
+   - 画像ギャラリー（横スクロール+スナップ）
+   - アクションボタン（いいね、ブックマーク、共有）
+   - コメントセクション
+
+3. **スポット投稿** (`src/app/(main)/spots/new/page.tsx`)
+   - 画像アップロード（最大5枚）
+   - フォーム（名前、カテゴリ、エリア、説明など）
+
+4. **検索・フィルター** (`src/app/(main)/search/page.tsx`)
+   - 検索バー
+   - カテゴリ・エリアフィルター
+   - ソート機能
+
+5. **プロフィール** (`src/app/(main)/profile/page.tsx`)
+   - ユーザー統計
+   - 投稿/ブックマークタブ
+   - プレミアムバッジ
+
+6. **ログイン** (`src/app/(auth)/login/page.tsx`)
+   - Google OAuth
+   - メール/パスワード
+
+7. **サインアップ** (`src/app/(auth)/signup/page.tsx`)
+   - Google OAuth
+   - メール登録フォーム
+
+### コンポーネント（Components）
+
+1. **MobileHeader** (`src/components/layout/MobileHeader.tsx`)
+   - スティッキーヘッダー
+   - 検索トグル
+   - 通知、投稿ボタン
+
+2. **MobileNav** (`src/components/layout/MobileNav.tsx`)
+   - ボトムナビゲーション（5タブ）
+   - Safe Area対応
+
+3. **SpotCard** (`src/components/spots/SpotCard.tsx`)
+   - 再利用可能なスポットカード
+   - 4:3画像、アクションボタン
+
+### ユーティリティ
+
+1. **cn関数** (`src/lib/utils.ts`)
+   - Tailwindクラス結合
+
+2. **formatRelativeTime** (`src/lib/utils.ts`)
+   - 相対時間フォーマット（「X分前」など）
+
+---
+
+**最終更新**: 2025-12-22 22:50 JST
+**バージョン**: 1.1 - モバイルデザインモック完成版
 
 **AI Assistantへ**: このガイドに従って開発を進めてください。不明点があればドキュメントを参照するか、ユーザーに質問してください。
+
+**重要**: すべての開発セッションで `docs/PROGRESS.md` を必ず更新すること。TDD（Test-Driven Development）を徹底すること。

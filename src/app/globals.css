@@ -29,10 +29,6 @@
     --foreground: 0 0% 95%;
   }
 
-  * {
-    @apply border-border;
-  }
-
   body {
     @apply bg-background text-foreground;
   }
@@ -61,5 +57,26 @@
 
   .korean-btn-outline {
     @apply korean-btn border-2 border-celadon text-celadon hover:bg-celadon hover:text-white;
+  }
+}
+
+@layer utilities {
+  /* スクロールバー非表示 */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Safe Areaサポート（モバイル） */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  .pt-safe {
+    padding-top: env(safe-area-inset-top, 0);
   }
 }

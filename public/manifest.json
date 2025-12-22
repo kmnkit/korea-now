@@ -1,0 +1,116 @@
+{
+  "name": "Korea Now - 韓国トレンドスポット共有アプリ",
+  "short_name": "Korea Now",
+  "description": "日本在住の韓国人や韓国好きのための、最新韓国トレンドスポット共有アプリ",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8F8F8",
+  "theme_color": "#94C9A9",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "ja",
+  "dir": "ltr",
+  "categories": ["travel", "social", "lifestyle"],
+  "icons": [
+    {
+      "src": "/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-mobile.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/screenshot-desktop.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "新規投稿",
+      "short_name": "投稿",
+      "description": "新しいスポットを投稿",
+      "url": "/spots/new",
+      "icons": [
+        {
+          "src": "/icon-shortcut-post.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "検索",
+      "short_name": "検索",
+      "description": "スポットを検索",
+      "url": "/search",
+      "icons": [
+        {
+          "src": "/icon-shortcut-search.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "ブックマーク",
+      "short_name": "保存済み",
+      "description": "保存したスポット",
+      "url": "/bookmarks",
+      "icons": [
+        {
+          "src": "/icon-shortcut-bookmark.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}
