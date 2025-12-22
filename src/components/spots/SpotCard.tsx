@@ -78,7 +78,7 @@ export function SpotCard({
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <div className="w-full h-full bg-gradient-to-br from-celadon to-kpop-pink" />
+                <div className="w-full h-full bg-gradient-to-br from-primary to-secondary" />
               )}
             </div>
             <span className="text-xs text-white/90 font-medium drop-shadow">
@@ -117,7 +117,7 @@ export function SpotCard({
                 }}
                 className={cn(
                   'flex items-center gap-1 text-xs transition-colors',
-                  isLiked ? 'text-kpop-pink' : 'text-gray-500 hover:text-kpop-pink'
+                  isLiked ? 'text-secondary' : 'text-gray-500 hover:text-secondary'
                 )}
               >
                 <Heart className={cn('w-4 h-4', isLiked && 'fill-current')} />
@@ -138,7 +138,7 @@ export function SpotCard({
                 }}
                 className={cn(
                   'transition-colors',
-                  isBookmarked ? 'text-kpop-blue' : 'text-gray-500 hover:text-kpop-blue'
+                  isBookmarked ? 'text-accent' : 'text-gray-500 hover:text-accent'
                 )}
               >
                 <Bookmark className={cn('w-4 h-4', isBookmarked && 'fill-current')} />

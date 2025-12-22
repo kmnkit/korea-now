@@ -13,11 +13,11 @@ export function MobileHeader() {
       <div className="px-4 h-14 flex items-center justify-between">
         {/* ロゴ */}
         <Link href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-celadon to-kpop-blue flex items-center justify-center shadow-korean">
+          <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center shadow-korean">
             <span className="text-white font-bold text-sm">K</span>
           </div>
-          <span className="text-lg font-bold bg-gradient-to-r from-celadon-dark to-kpop-pink bg-clip-text text-transparent">
-            Korea Now
+          <span className="text-lg font-bold text-gray-900">
+            Korea<span className="text-primary">Now</span>
           </span>
         </Link>
 
@@ -32,7 +32,7 @@ export function MobileHeader() {
 
           <button className="p-2 rounded-lg hover:bg-gray-100 transition-colors relative">
             <Bell className="w-5 h-5 text-gray-600" />
-            <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-kpop-pink rounded-full"></span>
+            <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-secondary rounded-full"></span>
           </button>
 
           <Link

@@ -80,7 +80,7 @@ export default function SearchPage() {
   const activeFilterCount = selectedCategories.length + selectedAreas.length
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-silk to-celadon/5">
+    <div className="min-h-screen bg-gray-50">
       {/* 検索ヘッダー */}
       <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
         <div className="px-4 py-3">
@@ -92,7 +92,7 @@ export default function SearchPage() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="スポット、エリア、タグを検索..."
-              className="w-full pl-11 pr-12 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-celadon focus:border-transparent"
+              className="w-full pl-11 pr-12 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               autoFocus
             />
             {searchQuery && (
@@ -111,7 +111,7 @@ export default function SearchPage() {
               onClick={() => setShowFilters(!showFilters)}
               className={`flex items-center gap-2 px-4 py-2 rounded-full font-medium transition-all ${
                 showFilters || activeFilterCount > 0
-                  ? 'bg-celadon text-white shadow-korean'
+                  ? 'bg-primary text-white shadow-korean'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
             >
@@ -128,7 +128,7 @@ export default function SearchPage() {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="px-4 py-2 rounded-full bg-gray-100 text-gray-700 text-sm font-medium border-none focus:outline-none focus:ring-2 focus:ring-celadon appearance-none cursor-pointer"
+              className="px-4 py-2 rounded-full bg-gray-100 text-gray-700 text-sm font-medium border-none focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer"
             >
               <option value="latest">最新順</option>
               <option value="popular">人気順</option>
@@ -161,7 +161,7 @@ export default function SearchPage() {
                     onClick={() => toggleCategory(category)}
                     className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
                       selectedCategories.includes(category)
-                        ? 'bg-celadon text-white shadow-korean'
+                        ? 'bg-primary text-white shadow-korean'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
                   >
@@ -183,7 +183,7 @@ export default function SearchPage() {
                     onClick={() => toggleArea(area)}
                     className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
                       selectedAreas.includes(area)
-                        ? 'bg-kpop-blue text-white shadow-korean'
+                        ? 'bg-accent text-white shadow-korean'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
                   >
@@ -217,7 +217,7 @@ export default function SearchPage() {
           // 検索前の状態
           <div className="text-center py-16">
             <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-celadon/20 to-kpop-blue/20 flex items-center justify-center">
-              <Search className="w-10 h-10 text-celadon" />
+              <Search className="w-10 h-10 text-primary" />
             </div>
             <h3 className="text-lg font-bold text-gray-900 mb-2">
               スポットを検索
@@ -235,7 +235,7 @@ export default function SearchPage() {
                 {['#インスタ映え', '#カップル', '#デート', '#一人旅', '#穴場', '#夜景'].map((tag) => (
                   <button
                     key={tag}
-                    className="px-3 py-1.5 rounded-full bg-gradient-to-r from-celadon/10 to-kpop-pink/10 text-sm font-medium text-gray-700 hover:from-celadon/20 hover:to-kpop-pink/20 transition-all"
+                    className="px-3 py-1.5 rounded-full bg-primary/10 text-sm font-medium text-gray-700 hover:bg-primary/20 transition-all"
                   >
                     {tag}
                   </button>
@@ -256,7 +256,7 @@ export default function SearchPage() {
                     className="w-full px-4 py-3 rounded-lg bg-white shadow-korean text-left flex items-center justify-between group hover:shadow-korean-lg transition-all"
                   >
                     <span className="text-sm text-gray-700">{query}</span>
-                    <Search className="w-4 h-4 text-gray-400 group-hover:text-celadon transition-colors" />
+                    <Search className="w-4 h-4 text-gray-400 group-hover:text-primary transition-colors" />
                   </button>
                 ))}
               </div>

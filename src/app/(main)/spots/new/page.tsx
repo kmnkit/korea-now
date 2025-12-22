@@ -32,7 +32,7 @@ export default function NewSpotPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-silk to-celadon/5 pb-24">
+    <div className="min-h-screen bg-gray-50 pb-24">
       {/* ヘッダー */}
       <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 px-4 h-14 flex items-center justify-between">
         <button
@@ -51,7 +51,7 @@ export default function NewSpotPage() {
         {/* 画像アップロード */}
         <div className="bg-white rounded-korean shadow-korean p-4">
           <label className="block text-sm font-semibold text-gray-700 mb-3">
-            写真 <span className="text-kpop-pink">*</span>
+            写真 <span className="text-danger">*</span>
           </label>
 
           <div className="grid grid-cols-3 gap-3">
@@ -70,7 +70,7 @@ export default function NewSpotPage() {
                   <X className="w-4 h-4 text-white" />
                 </button>
                 {index === 0 && (
-                  <div className="absolute bottom-2 left-2 px-2 py-0.5 bg-celadon rounded text-xs text-white font-medium">
+                  <div className="absolute bottom-2 left-2 px-2 py-0.5 bg-primary rounded text-xs text-white font-medium">
                     メイン
                   </div>
                 )}
@@ -80,7 +80,7 @@ export default function NewSpotPage() {
             {images.length < 5 && (
               <button
                 onClick={handleImageUpload}
-                className="aspect-square border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center gap-2 hover:border-celadon hover:bg-celadon/5 transition-colors"
+                className="aspect-square border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center gap-2 hover:border-primary hover:bg-primary/5 transition-colors"
               >
                 <Upload className="w-6 h-6 text-gray-400" />
                 <span className="text-xs text-gray-500">
@@ -98,19 +98,19 @@ export default function NewSpotPage() {
         {/* スポット名 */}
         <div className="bg-white rounded-korean shadow-korean p-4">
           <label className="block text-sm font-semibold text-gray-700 mb-2">
-            スポット名 <span className="text-kpop-pink">*</span>
+            スポット名 <span className="text-danger">*</span>
           </label>
           <input
             type="text"
             placeholder="예) 성수동 감성 카페"
-            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-celadon focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
           />
         </div>
 
         {/* カテゴリ */}
         <div className="bg-white rounded-korean shadow-korean p-4">
           <label className="block text-sm font-semibold text-gray-700 mb-3">
-            カテゴリ <span className="text-kpop-pink">*</span>
+            カテゴリ <span className="text-danger">*</span>
           </label>
           <div className="flex flex-wrap gap-2">
             {categories.map((category) => (
@@ -119,7 +119,7 @@ export default function NewSpotPage() {
                 onClick={() => setSelectedCategory(category)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                   selectedCategory === category
-                    ? 'bg-celadon text-white shadow-korean'
+                    ? 'bg-primary text-white shadow-korean'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -132,9 +132,9 @@ export default function NewSpotPage() {
         {/* エリア */}
         <div className="bg-white rounded-korean shadow-korean p-4">
           <label className="block text-sm font-semibold text-gray-700 mb-2">
-            エリア <span className="text-kpop-pink">*</span>
+            エリア <span className="text-danger">*</span>
           </label>
-          <select className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-celadon focus:border-transparent appearance-none bg-white">
+          <select className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent appearance-none bg-white">
             <option value="">選択してください</option>
             {areas.map((area) => (
               <option key={area} value={area}>{area}</option>
@@ -145,13 +145,13 @@ export default function NewSpotPage() {
         {/* 住所 */}
         <div className="bg-white rounded-korean shadow-korean p-4">
           <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-1">
-            <MapPin className="w-4 h-4 text-celadon" />
+            <MapPin className="w-4 h-4 text-primary" />
             住所
           </label>
           <input
             type="text"
             placeholder="서울특별시 성동구 연무장길 74"
-            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-celadon focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
           />
           <p className="text-xs text-gray-500 mt-2">
             Google マップで検索できる住所を入力してください
@@ -161,12 +161,12 @@ export default function NewSpotPage() {
         {/* 説明 */}
         <div className="bg-white rounded-korean shadow-korean p-4">
           <label className="block text-sm font-semibold text-gray-700 mb-2">
-            説明 <span className="text-kpop-pink">*</span>
+            説明 <span className="text-danger">*</span>
           </label>
           <textarea
             rows={6}
             placeholder="このスポットの魅力を教えてください&#10;&#10;例）&#10;・雰囲気、インテリア&#10;・おすすめメニュー&#10;・訪問時のポイント"
-            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-celadon focus:border-transparent resize-none"
+            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
           />
         </div>
 
@@ -178,7 +178,7 @@ export default function NewSpotPage() {
           <input
             type="text"
             placeholder="#インスタ映え #デート #カップル"
-            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-celadon focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
           />
           <p className="text-xs text-gray-500 mt-2">
             スペース区切りで複数のタグを追加できます
@@ -188,26 +188,26 @@ export default function NewSpotPage() {
         {/* 営業時間 */}
         <div className="bg-white rounded-korean shadow-korean p-4">
           <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-1">
-            <Clock className="w-4 h-4 text-celadon" />
+            <Clock className="w-4 h-4 text-primary" />
             営業時間
           </label>
           <input
             type="text"
             placeholder="10:00 - 22:00 (月曜定休)"
-            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-celadon focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
           />
         </div>
 
         {/* 予算 */}
         <div className="bg-white rounded-korean shadow-korean p-4">
           <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-1">
-            <DollarSign className="w-4 h-4 text-celadon" />
+            <DollarSign className="w-4 h-4 text-primary" />
             予算（一人当たり）
           </label>
           <input
             type="text"
             placeholder="₩15,000 - ₩25,000"
-            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-celadon focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
           />
         </div>
 

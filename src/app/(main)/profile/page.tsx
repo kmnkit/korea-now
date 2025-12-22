@@ -92,7 +92,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-silk to-celadon/5 pb-20">
+    <div className="min-h-screen bg-gray-50 pb-20">
       {/* プロフィールヘッダー */}
       <div className="bg-white border-b border-gray-200">
         {/* 設定ボタン */}
@@ -114,7 +114,7 @@ export default function ProfilePage() {
                 className="rounded-full object-cover border-4 border-white shadow-korean"
               />
               {user.plan === 'PREMIUM' && (
-                <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-gradient-to-r from-celadon to-kpop-pink rounded-full flex items-center justify-center border-2 border-white">
+                <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-secondary rounded-full flex items-center justify-center border-2 border-white">
                   <span className="text-white text-xs font-bold">P</span>
                 </div>
               )}
@@ -181,7 +181,7 @@ export default function ProfilePage() {
             <Grid3x3 className="w-4 h-4" />
             投稿
             {activeTab === 'posts' && (
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-celadon" />
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary" />
             )}
           </button>
 
@@ -196,7 +196,7 @@ export default function ProfilePage() {
             <Bookmark className="w-4 h-4" />
             ブックマーク
             {activeTab === 'bookmarks' && (
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-celadon" />
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary" />
             )}
           </button>
         </div>
@@ -213,8 +213,8 @@ export default function ProfilePage() {
             </div>
           ) : (
             <div className="text-center py-16">
-              <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-celadon/20 to-kpop-blue/20 flex items-center justify-center">
-                <Grid3x3 className="w-10 h-10 text-celadon" />
+              <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+                <Grid3x3 className="w-10 h-10 text-primary" />
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-2">
                 まだ投稿がありません
@@ -229,8 +229,8 @@ export default function ProfilePage() {
           )
         ) : (
           <div className="text-center py-16">
-            <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-celadon/20 to-kpop-pink/20 flex items-center justify-center">
-              <Bookmark className="w-10 h-10 text-kpop-pink" />
+            <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-accent/10 flex items-center justify-center">
+              <Bookmark className="w-10 h-10 text-accent" />
             </div>
             <h3 className="text-lg font-bold text-gray-900 mb-2">
               ブックマークがありません
@@ -245,14 +245,14 @@ export default function ProfilePage() {
       {/* プレミアムバナー（フリーユーザーの場合表示） */}
       {user.plan === 'FREE' && (
         <div className="mx-4 mb-4">
-          <div className="bg-gradient-to-r from-celadon via-kpop-blue to-kpop-purple rounded-korean p-4 text-white">
+          <div className="bg-primary rounded-korean p-4 text-white">
             <h3 className="text-lg font-bold mb-1">
               プレミアムにアップグレード
             </h3>
             <p className="text-sm opacity-90 mb-3">
               無制限の投稿、優先表示、詳細な分析など
             </p>
-            <button className="w-full bg-white text-gray-900 font-semibold py-2.5 rounded-lg hover:bg-gray-100 transition-colors">
+            <button className="w-full bg-white text-primary font-semibold py-2.5 rounded-lg hover:bg-gray-100 transition-colors">
               詳しく見る
             </button>
           </div>

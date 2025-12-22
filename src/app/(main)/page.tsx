@@ -111,7 +111,7 @@ export default function HomePage() {
             className={
               category === 'すべて'
                 ? 'korean-btn-primary text-sm py-2 px-4 whitespace-nowrap'
-                : 'px-4 py-2 rounded-korean bg-white border border-gray-200 text-sm font-medium text-gray-700 hover:border-celadon hover:text-celadon-dark transition-colors whitespace-nowrap'
+                : 'px-4 py-2 rounded-korean bg-white border border-gray-200 text-sm font-medium text-gray-700 hover:border-primary hover:text-primary-dark transition-colors whitespace-nowrap'
             }
           >
             {category}
@@ -127,7 +127,7 @@ export default function HomePage() {
 
             {/* 3枚ごとに広告プレースホルダー */}
             {(index + 1) % 3 === 0 && (
-              <div className="mt-4 korean-card p-4 bg-gradient-to-br from-silk to-celadon/5">
+              <div className="mt-4 korean-card p-4 bg-gray-100">
                 <div className="text-xs text-gray-500 text-center mb-2">スポンサー</div>
                 <div className="aspect-[320/100] bg-gray-100 rounded-korean flex items-center justify-center">
                   <span className="text-gray-400 text-sm">広告プレースホルダー</span>
