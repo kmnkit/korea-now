@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import { signup, signInWithGoogle } from '@/app/actions/auth'
 
 export default function SignupPage() {
   const router = useRouter()
@@ -13,23 +14,47 @@ export default function SignupPage() {
     confirmPassword: '',
     agreeToTerms: false
   })
+  const [error, setError] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
-  const handleGoogleSignup = () => {
-    // NextAuth Google OAuth処理（実装時）
-    console.log('Google signup')
+  const handleGoogleSignup = async () => {
+    try {
+      setIsLoading(true)
+      setError('')
+      await signInWithGoogle()
+      // Google OAuthはリダイレクトされるため、ここには到達しない
+    } catch (err) {
+      setError('Google登録に失敗しました')
+      setIsLoading(false)
+    }
   }
 
-  const handleEmailSignup = () => {
-    // NextAuth Email/Password処理（実装時）
-    if (formData.password !== formData.confirmPassword) {
-      alert('パスワードが一致しません')
-      return
+  const handleEmailSignup = async () => {
+    try {
+      setIsLoading(true)
+      setError('')
+
+      // 利用規約同意チェック
+      if (!formData.agreeToTerms) {
+        setError('利用規約とプライバシーポリシーに同意してください')
+        setIsLoading(false)
+        return
+      }
+
+      const result = await signup(formData)
+
+      if (!result.success) {
+        setError(result.error || 'サインアップに失敗しました')
+        setIsLoading(false)
+        return
+      }
+
+      // サインアップ成功 → プロフィール設定へリダイレクト
+      router.push('/onboarding/profile-setup')
+    } catch (err) {
+      setError('サインアップに失敗しました。もう一度お試しください。')
+      setIsLoading(false)
     }
-    if (!formData.agreeToTerms) {
-      alert('利用規約に同意してください')
-      return
-    }
-    console.log('Email signup', formData)
   }
 
   return (
@@ -56,10 +81,18 @@ export default function SignupPage() {
             新規登録
           </h2>
 
+          {/* エラーメッセージ */}
+          {error && (
+            <div className="mb-4 p-3 bg-danger-light/20 border border-danger rounded-lg text-danger text-sm">
+              {error}
+            </div>
+          )}
+
           {/* Google サインアップ */}
           <button
             onClick={handleGoogleSignup}
-            className="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-lg border-2 border-gray-200 hover:border-primary hover:bg-primary/5 transition-all font-medium text-gray-700 mb-4"
+            disabled={isLoading}
+            className="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-lg border-2 border-gray-200 hover:border-primary hover:bg-primary/5 transition-all font-medium text-gray-700 mb-4 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24">
               <path
@@ -176,9 +209,17 @@ export default function SignupPage() {
 
               <button
                 type="submit"
-                className="w-full korean-btn-primary"
+                disabled={isLoading}
+                className="w-full korean-btn-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
-                アカウントを作成
+                {isLoading ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    登録中...
+                  </>
+                ) : (
+                  'アカウントを作成'
+                )}
               </button>
             </div>
           </form>
