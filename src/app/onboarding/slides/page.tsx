@@ -34,7 +34,7 @@ export default function SlidesPage() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
 
-  // スクロール位置からcurrentSlideを更新
+  // スクロール位置からcurrentSlideを更新（デバウンス付き）
   const handleScroll = () => {
     if (!scrollContainerRef.current) return
 
@@ -42,7 +42,7 @@ export default function SlidesPage() {
     const slideWidth = scrollContainerRef.current.offsetWidth
     const newSlide = Math.round(scrollLeft / slideWidth)
 
-    if (newSlide !== currentSlide) {
+    if (newSlide !== currentSlide && newSlide >= 0 && newSlide < slides.length) {
       setCurrentSlide(newSlide)
     }
   }
@@ -51,8 +51,17 @@ export default function SlidesPage() {
     const container = scrollContainerRef.current
     if (!container) return
 
-    container.addEventListener('scroll', handleScroll)
-    return () => container.removeEventListener('scroll', handleScroll)
+    let timeoutId: NodeJS.Timeout
+    const debouncedScroll = () => {
+      clearTimeout(timeoutId)
+      timeoutId = setTimeout(handleScroll, 100)
+    }
+
+    container.addEventListener('scroll', debouncedScroll)
+    return () => {
+      clearTimeout(timeoutId)
+      container.removeEventListener('scroll', debouncedScroll)
+    }
   }, [currentSlide])
 
   const handleGetStarted = () => {
@@ -75,9 +84,9 @@ export default function SlidesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col relative">
       {/* Skip button */}
-      <div className="absolute top-4 right-4 z-10">
+      <div className="absolute top-4 right-4 z-20">
         <button
           onClick={handleSkip}
           className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
@@ -89,13 +98,17 @@ export default function SlidesPage() {
       {/* Slides container */}
       <div
         ref={scrollContainerRef}
-        className="flex-1 flex overflow-x-auto snap-x snap-mandatory scrollbar-hide"
-        style={{ scrollSnapType: 'x mandatory' }}
+        className="flex-1 flex overflow-x-auto scrollbar-hide"
+        style={{
+          scrollSnapType: 'x mandatory',
+          WebkitOverflowScrolling: 'touch',
+        }}
       >
         {slides.map((slide, index) => (
           <div
             key={slide.id}
-            className="min-w-full flex-shrink-0 snap-center flex flex-col items-center px-6 py-16"
+            className="min-w-full flex-shrink-0 flex flex-col items-center px-6 py-16"
+            style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}
           >
             {/* Top spacer */}
             <div className="flex-1 flex items-center justify-center">
@@ -121,7 +134,7 @@ export default function SlidesPage() {
 
             {/* CTAs for last slide */}
             {index === slides.length - 1 && (
-              <div className="w-full max-w-sm space-y-3 mt-8">
+              <div className="w-full max-w-sm space-y-3 mt-8 mb-20">
                 <button onClick={handleGetStarted} className="w-full korean-btn-primary">
                   始める
                 </button>
@@ -137,16 +150,16 @@ export default function SlidesPage() {
         ))}
       </div>
 
-      {/* Page indicators */}
-      <div className="pb-8 pt-4 flex justify-center gap-2">
+      {/* Page indicators - Fixed at bottom */}
+      <div className="fixed bottom-0 left-0 right-0 pb-safe pb-8 pt-4 flex justify-center gap-2 bg-white z-10">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => scrollToSlide(index)}
-            className={`w-2 h-2 rounded-full transition-all ${
+            className={`h-2 rounded-full transition-all ${
               currentSlide === index
-                ? 'bg-primary w-6'
-                : 'bg-gray-300 hover:bg-gray-400'
+                ? 'bg-primary w-8'
+                : 'bg-gray-300 w-2 hover:bg-gray-400'
             }`}
             aria-label={`スライド ${index + 1} へ移動`}
           />
