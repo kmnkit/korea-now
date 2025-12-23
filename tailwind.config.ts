@@ -10,21 +10,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // 韓国モダンカラーパレット - 淡い青と赤
+        // 韓国モダンカラーパレット - 鮮やかな青と赤（彩度向上版）
         primary: {
-          DEFAULT: '#7BA4DB', // ソフトブルー - 明度高め
-          light: '#A8C5E8',   // より淡いブルー
-          dark: '#5B8BC9',    // 少し濃いブルー
+          DEFAULT: '#4A90E2', // ビビッドブルー - 彩度向上
+          light: '#7AB3F5',   // より淡いブルー
+          dark: '#2C6BB8',    // 濃いブルー
         },
         secondary: {
-          DEFAULT: '#E89BA3', // ソフトローズ - 淡いピンク/赤
-          light: '#F5B5B5',   // より淡いピンク
-          dark: '#D97B85',    // 少し濃いローズ
+          DEFAULT: '#E75F73', // ビビッドローズ - 彩度向上
+          light: '#F98CA0',   // より淡いピンク
+          dark: '#C53D52',    // 濃いローズ
         },
         accent: {
-          DEFAULT: '#93B5E1', // アクセントブルー - 情報表示用
-          light: '#B5D0ED',   // より淡いアクセント
-          dark: '#6B9BD1',    // 少し濃いアクセント
+          DEFAULT: '#5BA3E0', // アクセントブルー - 情報表示用（彩度向上）
+          light: '#8FC4EB',   // より淡いアクセント
+          dark: '#3577B8',    // 濃いアクセント
         },
         // 警告・エラー用
         danger: {
