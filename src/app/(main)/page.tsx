@@ -102,7 +102,7 @@ const mockSpots = [
 
 export default function HomePage() {
   return (
-    <div className="space-y-4">
+    <div className="space-y-5">
       {/* カテゴリフィルター（横スクロール） */}
       <div className="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide">
         {['すべて', 'カフェ', 'レストラン', '観光スポット', 'ショッピング', 'ナイトライフ'].map((category) => (

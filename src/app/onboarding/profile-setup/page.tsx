@@ -98,8 +98,8 @@ export default function ProfileSetupPage() {
       </div>
 
       {/* Content */}
-      <form onSubmit={handleSubmit} className="flex-1 flex flex-col px-6 py-8">
-        <div className="flex-1 space-y-6">
+      <form onSubmit={handleSubmit} className="flex-1 flex flex-col px-6 py-6">
+        <div className="flex-1 space-y-8">
           {/* Avatar */}
           <div className="text-center">
             <div className="inline-block relative">
