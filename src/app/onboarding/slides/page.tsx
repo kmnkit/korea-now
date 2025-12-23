@@ -95,28 +95,33 @@ export default function SlidesPage() {
         {slides.map((slide, index) => (
           <div
             key={slide.id}
-            className="min-w-full flex-shrink-0 snap-center flex flex-col items-center justify-center px-8 py-12"
+            className="min-w-full flex-shrink-0 snap-center flex flex-col items-center px-6 py-16"
           >
-            {/* Icon */}
-            <div
-              className={`w-32 h-32 rounded-3xl ${slide.bgColor} flex items-center justify-center mb-8`}
-            >
-              <span className="text-6xl">{slide.icon}</span>
-            </div>
+            {/* Top spacer */}
+            <div className="flex-1 flex items-center justify-center">
+              <div className="space-y-10">
+                {/* Icon */}
+                <div
+                  className={`w-36 h-36 rounded-3xl ${slide.bgColor} flex items-center justify-center mx-auto`}
+                >
+                  <span className="text-7xl">{slide.icon}</span>
+                </div>
 
-            {/* Content */}
-            <div className="text-center space-y-4 mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 whitespace-pre-line leading-tight">
-                {slide.title}
-              </h2>
-              <p className="text-gray-600 leading-relaxed max-w-sm mx-auto">
-                {slide.description}
-              </p>
+                {/* Content */}
+                <div className="text-center space-y-4">
+                  <h2 className="text-3xl font-bold text-gray-900 whitespace-pre-line leading-tight">
+                    {slide.title}
+                  </h2>
+                  <p className="text-gray-600 leading-relaxed max-w-sm mx-auto text-base">
+                    {slide.description}
+                  </p>
+                </div>
+              </div>
             </div>
 
             {/* CTAs for last slide */}
             {index === slides.length - 1 && (
-              <div className="w-full max-w-sm space-y-3 mt-auto">
+              <div className="w-full max-w-sm space-y-3 mt-8">
                 <button onClick={handleGetStarted} className="w-full korean-btn-primary">
                   始める
                 </button>
