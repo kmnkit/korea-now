@@ -1255,4 +1255,184 @@ docs/ISSUES.md に Issue #2, #3 を追加
 
 ---
 
-**最終更新**: 2025-12-23 01:15 JST
+---
+
+## 2025-12-23 午後（NextAuth.js v5実装）
+
+### 📋 完了したタスク
+
+#### NextAuth.js v5認証システム実装
+- [x] **NextAuth.js v5設定ファイル作成**（src/lib/auth.ts）
+  - Google OAuth Provider設定
+  - Credentials Provider設定（メール/パスワード）
+  - Prisma Adapter統合
+  - JWT戦略（30日セッション）
+  - カスタムコールバック（plan, nickname, trustScoreをセッションに追加）
+  - TypeScript型拡張（Session, User）
+  - `auth()`, `signIn()`, `signOut()`ヘルパー関数
+  - `requireAuth()`認証ガード関数
+
+- [x] **NextAuth API Route作成**（src/app/api/auth/[...nextauth]/route.ts）
+  - GET/POSTハンドラーエクスポート
+  - NextAuthの全APIエンドポイント処理
+
+- [x] **認証Server Actions作成**（src/app/actions/auth.ts）
+  - `signup()`: 新規ユーザー登録
+    - Zodバリデーション（パスワード強度チェック）
+    - bcryptjsでパスワードハッシュ化
+    - 重複メールチェック
+    - 自動ログイン
+  - `login()`: メール/パスワードログイン
+    - Zodバリデーション
+    - NextAuth Credentials Provider使用
+    - エラーハンドリング
+  - `signInWithGoogle()`: Google OAuth
+    - リダイレクト処理
+
+- [x] **ログインページNextAuth統合**（src/app/(auth)/login/page.tsx）
+  - `login()` Server Action統合
+  - `signInWithGoogle()` 統合
+  - エラーメッセージ表示
+  - ローディング状態（スピナー）
+  - disabledステート（二重送信防止）
+  - ログイン成功後に`/home`へリダイレクト
+
+- [x] **サインアップページNextAuth統合**（src/app/(auth)/signup/page.tsx）
+  - `signup()` Server Action統合
+  - `signInWithGoogle()` 統合
+  - エラーメッセージ表示
+  - ローディング状態（スピナー）
+  - 利用規約同意チェック
+  - サインアップ成功後に`/onboarding/profile-setup`へリダイレクト
+
+- [x] **依存関係追加**
+  - `bcryptjs`: パスワードハッシュ化
+  - `@types/bcryptjs`: TypeScript型定義
+  - `@auth/prisma-adapter`: 既存
+  - `next-auth@5.0.0-beta.22`: 既存
+
+- [x] **環境変数テンプレート更新**（.env.example）
+  - `AUTH_SECRET`追加（NextAuth v5）
+  - Google OAuth設定コメント追加
+
+### 🔧 技術決定
+
+#### NextAuth.js v5の採用理由
+1. **App Router完全対応**: Next.js 14との完全統合
+2. **JWT戦略**: サーバーレス環境（Vercel）に最適
+3. **Prisma Adapter**: 既存のPrismaスキーマと統合
+4. **柔軟なプロバイダー**: Google OAuth + Credentials両対応
+5. **型安全性**: TypeScript型拡張で完全な型サポート
+
+#### セキュリティ実装
+1. **パスワードハッシュ化**: bcryptjs（cost: 12）
+2. **入力バリデーション**: Zod（Server Actions内）
+3. **CSRF保護**: NextAuth内蔵
+4. **セッション管理**: JWT（30日有効期限）
+5. **重複登録防止**: メールアドレスユニーク制約
+
+### 📝 Git作業
+
+#### コミット履歴
+```
+fba73cf - feat(auth): implement NextAuth.js v5 with Google OAuth and credentials
+  - 8 files changed, 1605 insertions(+), 54 deletions(-)
+  - NextAuth設定、Server Actions、UI統合完了
+```
+
+### 💡 学び・メモ
+
+#### NextAuth.js v5の変更点
+1. **`authOptions`の廃止**
+   - v4: `export const authOptions = { ... }`
+   - v5: `export const { auth, signIn, signOut } = NextAuth({ ... })`
+
+2. **API Routeの簡素化**
+   - v4: `NextAuth(authOptions)`をエクスポート
+   - v5: `export { GET, POST } from '@/lib/auth'`
+
+3. **型拡張の改善**
+   - `declare module 'next-auth'`で型拡張
+   - Session, Userインターフェースを拡張
+   - カスタムフィールド（plan, nickname, trustScore）追加
+
+#### Server Actionsのベストプラクティス
+1. **'use server'ディレクティブ**: ファイル冒頭に必須
+2. **Zodバリデーション**: 必ず実装
+3. **エラーハンドリング**: try-catchで包む
+4. **返り値の型安全性**: `{ success: boolean, error?: string }`形式
+
+#### パスワード強度
+- 最低8文字
+- 大文字、小文字、数字を含む
+- bcryptjsでハッシュ化（cost factor: 12）
+
+### 🎯 次のステップ
+
+#### 優先度: 最高
+- [ ] **Vercel環境変数設定**（ユーザー操作）
+  - `AUTH_SECRET`生成: `openssl rand -base64 32`
+  - `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`設定
+  - Vercel Dashboardで環境変数登録
+
+- [ ] **Vercel Postgres接続**
+  - Vercel Postgresインスタンス作成
+  - 環境変数自動設定確認
+  - Prisma migrate実行
+
+#### 優先度: 高
+- [ ] **認証テスト**
+  - サインアップフロー動作確認
+  - ログインフロー動作確認
+  - Google OAuth動作確認（本番環境）
+
+- [ ] **スポット投稿機能実装**（TDD）
+  - Server Actions作成
+  - API Routes作成
+  - フォーム統合
+
+#### 優先度: 中
+- [ ] **画像アップロード機能**（Vercel Blob）
+- [ ] **認証ガード実装**
+  - 保護されたページに`requireAuth()`追加
+  - 未認証時のリダイレクト処理
+
+### 🚧 注意事項
+
+#### 本番デプロイ前の確認
+1. **環境変数設定**
+   - `AUTH_SECRET`: ランダム生成（32バイト以上）
+   - `GOOGLE_CLIENT_ID`/`SECRET`: Google Cloud Consoleで取得
+   - `NEXTAUTH_URL`: 本番URL（https://korea-now.vercel.app）
+
+2. **Google OAuth設定**
+   - Authorized redirect URIs: `https://your-domain.com/api/auth/callback/google`
+   - Authorized JavaScript origins: `https://your-domain.com`
+
+3. **データベースマイグレーション**
+   - Prisma migrate実行前にVercel Postgres接続確認
+
+### 📈 プロジェクト状況
+
+**進捗**:
+- 設計・計画: 100% ✅
+- Phase 1 セットアップ: 100% ✅
+- Phase 3 UI/UXモック: 100% ✅
+- オンボーディングフロー: 100% ✅
+- **認証システム: 90% ✅（NextAuth実装完了、環境変数設定待ち）**
+- ビルドエラー修正: 100% ✅
+- MVP開発: 45%
+- テスト: 10%
+- デプロイ: 95%
+
+**問題追跡**:
+- Issue #1-7: 全て解決済み ✅
+
+**次回セッション目標**:
+1. Vercel環境変数設定
+2. Prisma migrate実行
+3. 認証フロー動作確認
+
+---
+
+**最終更新**: 2025-12-23 02:30 JST

@@ -1,21 +1,48 @@
 'use client'
 
 import Link from 'next/link'
-import { Mail } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import { login, signInWithGoogle } from '@/app/actions/auth'
 
 export default function LoginPage() {
+  const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
-  const handleGoogleLogin = () => {
-    // NextAuth Google OAuth処理（実装時）
-    console.log('Google login')
+  const handleGoogleLogin = async () => {
+    try {
+      setIsLoading(true)
+      setError('')
+      await signInWithGoogle()
+      // Google OAuthはリダイレクトされるため、ここには到達しない
+    } catch (err) {
+      setError('Googleログインに失敗しました')
+      setIsLoading(false)
+    }
   }
 
-  const handleEmailLogin = () => {
-    // NextAuth Email/Password処理（実装時）
-    console.log('Email login', { email, password })
+  const handleEmailLogin = async () => {
+    try {
+      setIsLoading(true)
+      setError('')
+
+      const result = await login({ email, password })
+
+      if (!result.success) {
+        setError(result.error || 'ログインに失敗しました')
+        setIsLoading(false)
+        return
+      }
+
+      // ログイン成功 → ホームページへリダイレクト
+      router.push('/home')
+    } catch (err) {
+      setError('ログインに失敗しました。もう一度お試しください。')
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -42,10 +69,18 @@ export default function LoginPage() {
             ログイン
           </h2>
 
+          {/* エラーメッセージ */}
+          {error && (
+            <div className="mb-4 p-3 bg-danger-light/20 border border-danger rounded-lg text-danger text-sm">
+              {error}
+            </div>
+          )}
+
           {/* Google ログイン */}
           <button
             onClick={handleGoogleLogin}
-            className="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-lg border-2 border-gray-200 hover:border-primary hover:bg-primary/5 transition-all font-medium text-gray-700 mb-4"
+            disabled={isLoading}
+            className="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-lg border-2 border-gray-200 hover:border-primary hover:bg-primary/5 transition-all font-medium text-gray-700 mb-4 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24">
               <path
@@ -127,9 +162,17 @@ export default function LoginPage() {
 
               <button
                 type="submit"
-                className="w-full korean-btn-primary"
+                disabled={isLoading}
+                className="w-full korean-btn-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
-                ログイン
+                {isLoading ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    ログイン中...
+                  </>
+                ) : (
+                  'ログイン'
+                )}
               </button>
             </div>
           </form>
